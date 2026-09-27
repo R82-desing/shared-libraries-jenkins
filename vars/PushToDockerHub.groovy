@@ -1,4 +1,4 @@
-def call(String Projectname, String Projecttag){
+def call(String Targetimage){
   echo "image push to docker hub"
   withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]){
     // Docker Hub Login
@@ -6,6 +6,6 @@ def call(String Projectname, String Projecttag){
     // Image ko Docker Hub format me Tag karein
     sh 'docker tag notes-app:latest $DOCKER_USER/notes-app:latest'
     // Docker Hub par Push karein
-    sh 'docker push $DOCKER_USER/"${Projectname}":"${Projectname}"
+    sh 'docker push $DOCKER_USER/${Tragetimage}'
   }
 }
